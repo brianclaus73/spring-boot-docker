@@ -62,21 +62,20 @@
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.20.0</version>
+				<version>0.34.0</version>
 
 				<configuration>
-
-                    <!--<dockerHost>http://127.0.0.1:2375</dockerHost>-->
-                    <dockerHost>unix:///var/run/docker.sock</dockerHost>
+                    <dockerHost>http://127.0.0.1:2375</dockerHost>
+                    <!--<dockerHost>unix:///var/run/docker.sock</dockerHost>-->
 
                     <verbose>true</verbose>
 					<images>
 						<image>
 							<name>${docker.image.prefix}/${docker.image.name}</name>
 							<build>
+							<!-- need to configure where to find the file here: note src, main, docker is convention -->
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
-
-                                <!--copies artficact to docker build dir in target-->
+                                <!--copies artifact to docker build dir in target-->
 								<assembly>
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
